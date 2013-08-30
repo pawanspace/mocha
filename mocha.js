@@ -1361,15 +1361,11 @@ function Mocha(options) {
   this.files = [];
   this.options = options;
   this.grep(options.grep);
-  this.igrep(options.igrep);
   this.suite = new exports.Suite('', new exports.Context);
   this.ui(options.ui);
   this.bail(options.bail);
-  console.log("reporting options");
   this.reporter(options.reporter);
-  console.log("reporting options done");
   if (typeof options.timeout === 'number') this.timeout(options.timeout);
-  console.log("reporting options after");
   if (options.slow) this.slow(options.slow);
 }
 
@@ -1495,19 +1491,6 @@ Mocha.prototype.grep = function(re){
 };
 
 
-/**
- * Add regexp to grep, if `re` is a string it is escaped.
- * Ignore case.
- * @param {RegExp|String} re
- * @return {Mocha}
- * @api public
- */
-Mocha.prototype.igrep = function(re){
-  this.options.igrep = 'string' == typeof re
-    ? new RegExp(utils.escapeRegexp(re), 'i')
-    : re!== undefined?re+"i":re;
-  return this;
-};
 
 /**
  * Invert `.grep()` matches.
@@ -1626,7 +1609,6 @@ Mocha.prototype.run = function(fn){
   runner.ignoreLeaks = false !== options.ignoreLeaks;
   runner.asyncOnly = options.asyncOnly;
   if (options.grep) runner.grep(options.grep, options.invert);
-  if (options.igrep) runner.grep(options.igrep, options.invert);
   if (options.globals) runner.globals(options.globals);
   if (options.growl) this._growl(runner, reporter);
   return runner.run(fn);

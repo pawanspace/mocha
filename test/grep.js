@@ -13,10 +13,6 @@ describe('Mocha', function(){
       mocha.options.grep.toString().should.equal('/foo/');
     })
 
-    it('should convert igrep string to a RegExp with ignore case flag', function(){
-      var mocha = new Mocha({ igrep: 'foo' });
-      mocha.options.igrep.toString().should.equal('/foo/i');
-    })
   })
 
   describe('.grep()', function(){
@@ -32,11 +28,6 @@ describe('Mocha', function(){
       mocha.options.grep.toString().should.equal('/foo/');
     })
 
-     it('should ignore case for igrep', function(){
-      var mocha = new Mocha;
-      mocha.igrep('foo');
-      mocha.options.igrep.toString().should.equal('/foo/i');
-    })
 
     it('should return it\'s parent Mocha object for chainability', function(){
       var mocha = new Mocha;
