@@ -67,6 +67,7 @@ program
   .option('-R, --reporter <name>', 'specify the reporter to use', 'dot')
   .option('-u, --ui <name>', 'specify user-interface (bdd|tdd|exports)', 'bdd')
   .option('-g, --grep <pattern>', 'only run tests matching <pattern>')
+  .option('-n, --ncgrep <pattern>', 'only run tests matching <pattern> but ignore case')
   .option('-i, --invert', 'inverts --grep matches')
   .option('-t, --timeout <ms>', 'set test-case timeout in milliseconds [2000]')
   .option('-s, --slow <ms>', '"slow" test threshold in milliseconds [75]')
@@ -225,6 +226,9 @@ mocha.suite.bail(program.bail);
 // --grep
 
 if (program.grep) mocha.grep(new RegExp(program.grep));
+
+// --igrep
+if (program.igrep) mocha.igrep(new RegExp(program.igrep));
 
 // --invert
 
