@@ -4,7 +4,7 @@ var Mocha = require('../');
 describe('Mocha', function(){
   describe('"grep" option', function(){
     it('should add a RegExp to the mocha.options object', function(){
-      var mocha = new Mocha({ grep: /foo/ });
+      var mocha = new Mocha({ grep: /foo/i });
       mocha.options.grep.toString().should.equal('/foo/i');
     })
 
@@ -17,7 +17,7 @@ describe('Mocha', function(){
   describe('.grep()', function(){
     it('should add a RegExp to the mocha.options object', function(){
       var mocha = new Mocha;
-      mocha.grep(/foo/);
+      mocha.grep(/foo/i);
       mocha.options.grep.toString().should.equal('/foo/i');
     })
 
