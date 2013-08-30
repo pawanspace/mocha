@@ -5,12 +5,12 @@ describe('Mocha', function(){
   describe('"grep" option', function(){
     it('should add a RegExp to the mocha.options object', function(){
       var mocha = new Mocha({ grep: /foo/ });
-      mocha.options.grep.toString().should.equal('/foo/');
+      mocha.options.grep.toString().should.equal('/foo/i');
     })
 
     it('should convert grep string to a RegExp', function(){
       var mocha = new Mocha({ grep: 'foo' });
-      mocha.options.grep.toString().should.equal('/foo/');
+      mocha.options.grep.toString().should.equal('/foo/i');
     })
   })
 
@@ -18,13 +18,19 @@ describe('Mocha', function(){
     it('should add a RegExp to the mocha.options object', function(){
       var mocha = new Mocha;
       mocha.grep(/foo/);
-      mocha.options.grep.toString().should.equal('/foo/');
+      mocha.options.grep.toString().should.equal('/foo/i');
     })
 
     it('should convert grep string to a RegExp', function(){
       var mocha = new Mocha;
       mocha.grep('foo');
-      mocha.options.grep.toString().should.equal('/foo/');
+      mocha.options.grep.toString().should.equal('/foo/i');
+    })
+
+     it('should ignore case for grep', function(){
+      var mocha = new Mocha;
+      mocha.grep('foo');
+      mocha.options.grep.toString().should.equal('/foo/i');
     })
 
     it('should return it\'s parent Mocha object for chainability', function(){

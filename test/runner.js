@@ -30,6 +30,8 @@ describe('Runner', function(){
       newRunner.grep(/lions/, true);
       newRunner.total.should.equal(1);
     })
+
+
   })
 
   describe('.grepTotal()', function(){
